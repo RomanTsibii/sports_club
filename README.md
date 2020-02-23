@@ -30,4 +30,7 @@ rails g devise User
 rails db:migrate
 rails g devise:views
 
+rails g migration AddColumnsToUser full_name from about:text sex height:integer weight:integer body_weight_index:integer age:integer visible:boolean
+
+
 

@@ -1,0 +1,54 @@
+<nav class="navbar is-link" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="#">
+      <h1>OTAMAN</h1>
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-end">
+      <a class="navbar-item">Тренери</a>
+      <a class="navbar-item">Абонемент</a>
+      <a class="navbar-item">Фото Галерея</a>
+      <a class="navbar-item">Про Нас</a>
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>Реєстрація</strong>
+          </a>
+          <a class="button is-light">
+            Увійти
+          </a>
+        </div>
+      </div>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-item">Roman Tsibii</a>
+        <div class="navbar-dropdown">
+          <a href="" class="navbar-item">Профіль</a>
+          <a href="" class="navbar-item">Панель керування</a>
+          <a href="" class="navbar-item">Вийти</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</nav>
+<script>
+    $(document).ready(function() {
+
+        // Check for click events on the navbar burger icon
+        $(".navbar-burger").click(function() {
+
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            $(".navbar-burger").toggleClass("is-active");
+            $(".navbar-menu").toggleClass("is-active");
+
+        });
+    });
+</script>

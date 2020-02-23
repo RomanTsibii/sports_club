@@ -16,25 +16,26 @@
       <a class="navbar-item">Абонемент</a>
       <a class="navbar-item">Фото Галерея</a>
       <a class="navbar-item">Про Нас</a>
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Реєстрація</strong>
-          </a>
-          <a class="button is-light">
-            Увійти
-          </a>
-        </div>
-      </div>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-item">Roman Tsibii</a>
-        <div class="navbar-dropdown">
-          <a href="" class="navbar-item">Профіль</a>
-          <a href="" class="navbar-item">Панель керування</a>
-          <a href="" class="navbar-item">Вийти</a>
 
+      <% if (!user_signed_in?) %>
+
+        <div class="navbar-item">
+          <div class="buttons">
+            <%= link_to "Реєстрація", new_user_registration_path, class: "button is-primary" %>
+            <%= link_to "Увійти", new_user_session_path, class: "button is-light" %>
+          </div>
         </div>
-      </div>
+      <% else %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-item"><%= current_user.email %></a>
+          <div class="navbar-dropdown">
+            <%= link_to "Профіль", edit_user_registration_path, class: "navbar-item" %>
+            <a href="" class="navbar-item">Панель керування</a>
+            <hr class="navbar-divider">
+            <%= link_to "Вийти", destroy_user_session_path, method: :delete, class: "navbar-item" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 

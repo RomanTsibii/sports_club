@@ -14,6 +14,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'rspec-rails'
 gem 'factory_bot_rails'
+gem 'devise'
 
 gem 'bulma-rails', '~> 0.7.4'
 gem 'bulma-extensions-rails', '~> 1.0.30'

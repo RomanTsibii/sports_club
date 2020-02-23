@@ -22,3 +22,12 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+rails g controller Pages home
+
+rails g devise:install
+rails g devise User
+rails db:migrate
+rails g devise:views
+
+

@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_02_23_104925) do
     t.integer "body_weight_index"
     t.integer "age"
     t.boolean "visible", default: true
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

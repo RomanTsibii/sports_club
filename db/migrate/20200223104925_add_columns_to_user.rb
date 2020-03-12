@@ -9,6 +9,7 @@ class AddColumnsToUser < ActiveRecord::Migration[6.0]
     add_column :users, :body_weight_index, :integer
     add_column :users, :age, :integer
     add_column :users, :visible, :boolean, default: true
+    add_column :users, :role, :integer
 
   end
 end

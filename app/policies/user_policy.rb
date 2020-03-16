@@ -1,18 +1,27 @@
-class UserPolicy #< ApplicationPolicy
-  attr_reader :user, :post
+class UserPolicy < ApplicationPolicy
+  attr_reader :user, :record
 
-  def initialize(user, post)
+  def initialize(user, record)
     @user = user
-    @post = post
+    @record = record
   end
 
   def index?
-    @user.admin?
-    # user.role == 'admin' #|| record.user == user
+    admin
   end
 
-  # def show?
-  #   # @current_user.user?
-  #   user.role == 'admin' #|| record.user == user
-  # end
+  def show?
+    admin || trainer || user.present? && user == record.user
+  end
+
+  private
+
+  def admin
+    user.present? && user.role == "admin"
+  end
+
+  def trainer
+    user.role == "trainer"
+  end
+
 end

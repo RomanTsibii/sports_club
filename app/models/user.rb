@@ -2,6 +2,9 @@ class User < ApplicationRecord
   enum role: [:admin, :trainer, :user ]
   after_initialize :set_default_role, :if => :new_record?
 
+  # scope :published, -> { where(published: true) }
+  scope :trainer, -> { where(role: "trainer")}
+
   def set_default_role
     self.role ||= :user
   end

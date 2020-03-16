@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit
-  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   protect_from_forgery
 
 
@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
   def user_not_authorized
     flash[:alert] = "Access denied."
-    redirect_to(request.referer || root_path )
+    redirect_to( root_path )
   end
 
   protected

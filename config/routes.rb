@@ -5,4 +5,7 @@ Rails.application.routes.draw do
 
   resources :users
 
+  get '/trainer', to: 'users#trainer'
+
+
 end

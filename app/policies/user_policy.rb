@@ -11,7 +11,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    admin?
+    admin? || current_user?
   end
 
   def delete?
@@ -19,7 +19,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    admin? || trainer? || record == user
+    admin? || trainer? || current_user?
   end
 
   private
@@ -30,6 +30,10 @@ class UserPolicy < ApplicationPolicy
 
   def trainer?
     user.present? && user.role == "trainer"
+  end
+
+  def current_user?
+    user.present? && record == user
   end
 
 end

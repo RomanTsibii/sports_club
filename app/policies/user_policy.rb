@@ -7,21 +7,29 @@ class UserPolicy < ApplicationPolicy
   end
 
   def index?
-    admin
+    admin?
+  end
+
+  def update?
+    admin?
+  end
+
+  def delete?
+    admin?
   end
 
   def show?
-    admin || trainer || user.present? && user == record.user
+    admin? || trainer? || record == user
   end
 
   private
 
-  def admin
+  def admin?
     user.present? && user.role == "admin"
   end
 
-  def trainer
-    user.role == "trainer"
+  def trainer?
+    user.present? && user.role == "trainer"
   end
 
 end

@@ -29,7 +29,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def trainer?
-    user.present? && user.role == "trainer"
+    user.present? && user.role == "trainers"
   end
 
   def current_user?

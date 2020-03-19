@@ -1,12 +1,12 @@
 class User < ApplicationRecord
-  enum role: [:admin, :trainer, :user ]
+  enum role: [:admin, :trainers, :sportsman ]
   after_initialize :set_default_role, :if => :new_record?
 
   # scope :published, -> { where(published: true) }
-  scope :trainer, -> { where(role: "trainer")}
+  # scope :trainer, -> { where(role: "trainer")}
 
   def set_default_role
-    self.role ||= :user
+    self.role ||= :sportsman
   end
 
   devise :database_authenticatable, :registerable,
@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   validates :full_name, presence: true, length: {in: 6..50}
 
+
+  # device authentication with facebook
   def self.from_omniauth(auth) # OmniAuth for facebook
     user = User.where(email: auth.info.email).first
 

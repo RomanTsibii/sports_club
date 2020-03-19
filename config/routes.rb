@@ -7,7 +7,7 @@ Rails.application.routes.draw do
              controllers: {omniauth_callbacks: 'omniauth_callbacks'}
 
   resources :users
-  get '/trainer', to: 'users#trainer'
+  get '/trainers', to: 'users#trainers'
 
 
 

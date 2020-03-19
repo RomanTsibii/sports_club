@@ -31,8 +31,8 @@ class UsersController < ApplicationController
 
 
 
-  def trainer
-    @trainers = User.trainer
+  def trainers
+    @trainers = User.trainers
   end
 
 

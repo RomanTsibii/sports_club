@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :user_subscriptions
+  has_many :subscriptions, through: :user_subscriptions
+
   enum role: [:admin, :trainers, :sportsman ]
   after_initialize :set_default_role, :if => :new_record?
 
@@ -34,4 +37,5 @@ class User < ApplicationRecord
       end
     end
   end
+
 end

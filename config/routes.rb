@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   resources :users
   get '/trainers', to: 'users#trainers'
 
-
+  resources :subscriptions
 
 end

@@ -14,8 +14,12 @@ class SubscriptionsController < ApplicationController
       redirect_to subscriptions_path
     else
       flash[:alert] = "Не може зберегти"
-      render edit_subscription_path
+      render 'edit'
     end
+  end
+
+  def edit
+    @subscription = Subscription.find(params[:id])
   end
 
 

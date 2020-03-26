@@ -14,22 +14,36 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    authorize @user
     @user.destroy
     redirect_to users_path, :notice => "User deleted"
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash[:notice] = "Saved..."
-      redirect_to users_path
-    else
-      flash[:alert] = "Cannot Update..."
-      render edit_user_path
+    @user = current_user
+    authorize @user
+
+    if @user.role == "admin" # Коли адмін змінює роль чи інші дані користувача
+      @user = User.find(params[:id])
+
+      if @user.update(user_params)
+        flash[:notice] = "Saved..."
+        redirect_to users_path
+      else
+        flash[:alert] = "Cannot Update..."
+        render edit_user_path
+      end
+
+    else # Коли звичайний користувач змінює свої дані
+      if @user.update(current_user_params)
+        flash[:notice] = "Saved..."
+        redirect_to user_path(@user)
+      else
+        flash[:alert] = "Cannot Update..."
+        render edit_user_path
+      end
     end
   end
-
-
 
   def trainers
     @trainers = User.trainers
@@ -40,6 +54,11 @@ class UsersController < ApplicationController
   #   redirect_to root_path, alert: errors.message
   # end
   def user_params
-    params.require(:user).permit(:role )
+    params.require(:user).permit(:role, :weight, :height, :from, :about, :sex )
   end
+
+  def current_user_params
+    params.require(:user).permit(:weight, :height, :from, :about, :sex )
+  end
+
 end

@@ -33,4 +33,5 @@ rails g devise:views
 rails g migration AddColumnsToUser full_name from about:text sex height:integer weight:integer body_weight_index:integer age:integer visible:boolean
 
 
+rails webpacker:install:vue  # на JavaScript
 

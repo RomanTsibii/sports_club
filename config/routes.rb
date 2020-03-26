@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :users
   get '/trainers', to: 'users#trainers'
 
+  post '/users/edit', to: 'users#update'
+  # get 'my_page', to: 'users#show'
   resources :subscriptions
 
 end

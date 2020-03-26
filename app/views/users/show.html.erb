@@ -1,3 +1,145 @@
-<%= @user.full_name %>
-<%= @user.email %>
-<%= @user.role %>
+<%#= @user.full_name %>
+<%#= @user.email %>
+<%#= @user.role %>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+
+      <!-- LEFT SIDE -->
+      <div class="column is-one-third">
+        <div class="columns is-multiline">
+
+          <!-- Верхня карта -->
+          <div class="column is-full">
+            <div class="card">
+
+              <!--  Фото -->
+              <div class="card-content is-horizontal-center is-flex">
+                <figure class="image is-256x256">
+                  <%= image_tag  'icon_default_avatar.png' %>
+                </figure>
+              </div>
+
+              <!--  Дані-->
+              <div class="card-content">
+
+                <!-- Upload Button -->
+                <div class="content has-text-centered">
+                  <p class="title is-5">
+                    <%= current_user.full_name %>
+                  </p>
+                  <button class="button is-dark is-outlined is-fullwidth">Оновити Аватар</button>
+                </div>
+
+                <!-- Вага -->
+                <article>
+                  <div class="media">
+                    <div class="media-content">Вага</div>
+                    <div class="media-right" aria-controls="user-weight">
+                      <strong>
+                        <% if current_user.weight.presence %><%= current_user.weight %> кг<% else %>(Введіть Вагу)<% end %>
+                      </strong><i class="toggle far fa-edit" aria-controls="user-weight"></i>
+                    </div>
+                  </div>
+
+                  <div class="content">
+                    <%= form_for :user, url: users_edit_url(@user), action: :update, method: :post, html: {id: 'user-weight', class: 'is-hidden'} do |f| %>
+                      <div class="field">
+                        <%= f.text_field :weight, autofocus: true, autocomplete: 'form', class: 'input' %>
+                      </div>
+                      <a class="toggle button is-light" aria-controls="user-weight">Cancel</a>
+                      <%= f.submit "Save", class: "button is-primary" %>
+                    <% end %>
+                  </div>
+                </article>
+                <hr class="h-10">
+
+                <!-- Ріст -->
+                <article>
+                  <div class="media">
+                    <div class="media-content">Ріст</div>
+                    <div class="media-right">
+                      <strong><% if current_user.height.presence %><%= current_user.height %> см<% else %>(Введіть Ріст) <% end %></strong> <i class="toggle far fa-edit" aria-controls="user-height"></i>
+                    </div>
+
+                  </div>
+
+                  <div class="content">
+                    <%= form_for :user, url: users_edit_url(@user), action: :update, method: :post, html: {id: 'user-height', class: 'is-hidden'} do |f| %>
+                      <div class="field">
+                        <%= f.text_field :height, autofocus: true, autocomplete: 'form', class: 'input' %>
+                      </div>
+                      <a class="toggle button is-light" aria-controls="user-height">Cancel</a>
+                      <%= f.submit "Save", class: "button is-primary" %>
+                    <% end %>
+                  </div>
+
+                </article>
+                <hr class="h-10">
+
+                <!-- Розрахунок індексу маси тіла -->
+                <article class="media">
+                  <div class="media-content">Індекс маси тіла</div>
+                  <div class="media-right">
+                    <strong>
+                      <% if current_user.height.presence && current_user.weight.presence %>
+                        <%= sprintf("%.2f", (current_user.weight)/(current_user.height * current_user.height / 10000.0)).to_f %>
+                      <% else %>(Введіть Вагу і Ріст)<% end %>
+                    </strong>
+                  </div>
+                  <br/>
+                </article>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Нижня карта -->
+          <div class="column is-full">
+            <div class="card">
+              <div class="card-content">
+
+                <!-- Стать -->
+                <article>
+                  <div class="media">
+                    <div class="media-content">Стать</div>
+                    <div class="media-right">
+                      <strong>
+                        <% if current_user.sex.presence %><%=  %><% else %><% end %>
+                      </strong>
+                    </div>
+                  </div>
+                </article>
+
+                <hr class="h-10">
+
+                <!-- Languages -->
+                <article></article>
+                <hr class="h-10">
+
+                <!-- Linked Account -->
+                <article class="media"></article>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="column">
+        <div class="columns is-multiline">
+
+          <!-- Create New Gig -->
+          <div class="column is-one-third has-text-centered"></div>
+
+          <!-- Sample Gig -->
+          <div class="column is-one-third has-text-centered"></div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

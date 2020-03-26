@@ -7,6 +7,9 @@
         <tr>
           <%#= render user %>
           <td>
+            <%= user.id %>
+          </td>
+          <td>
             <%= link_to user.email, user %>
           </td>
           <td>
@@ -14,7 +17,7 @@
               <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}, class: "button is-primary is-dropdown") %>
 
             <td>
-              <%= f.submit 'Change Role', class: "button is-warning is-primary is-rounded" %>
+              <%= f.submit 'Change Role', class: "button is-dark is-rounded" %>
             </td>
           <% end %>
           </td>

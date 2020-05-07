@@ -20,7 +20,7 @@
               <%= f.submit 'Change Role', class: "button is-dark is-rounded" %>
             </td>
           <% end %>
-          </td>
+
           <td>
             <%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button is-danger is-rounded') unless user == current_user %>
           </td>

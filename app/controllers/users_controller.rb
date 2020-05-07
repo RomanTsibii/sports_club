@@ -22,18 +22,15 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     authorize @user
-
     if @user.role == "admin" # Коли адмін змінює роль чи інші дані користувача
-      @user = User.find(params[:id])
-
-      if @user.update(user_params)
-        flash[:notice] = "Saved..."
-        redirect_to users_path
-      else
-        flash[:alert] = "Cannot Update..."
-        render edit_user_path
-      end
-
+      @admin = User.find(params[:id])
+        if @admin.update(admin_params)
+          flash[:notice] = "Saved..."
+          redirect_to users_path
+        else
+          flash[:alert] = "Cannot Update..."
+          render edit_user_path
+        end
     else # Коли звичайний користувач змінює свої дані
       if @user.update(current_user_params)
         flash[:notice] = "Saved..."
@@ -53,7 +50,7 @@ class UsersController < ApplicationController
   # rescue_from NoMethodError do |errors|
   #   redirect_to root_path, alert: errors.message
   # end
-  def user_params
+  def admin_params
     params.require(:user).permit(:role, :weight, :height, :from, :about, :sex )
   end
 

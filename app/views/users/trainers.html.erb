@@ -1,7 +1,26 @@
-<% @trainers.each do |trainer| %>
+<section class="mysection">
+  <div id="first">
+    <h1 class="h1">Тренери</h1>
 
-  <%= trainer.full_name %>
-  <%= trainer.email %>
-  <%= trainer.role %>
-  <br/>
-<% end %>
+    <ul class="products clearfix">
+      <% @trainers.each do |trainer| %>
+        <li class="product-wrapper ">
+          <a href="" class="product">
+            <% if trainer.image.presence %>
+              <%= image_tag trainer.image, class: "product-photo-img" %>
+            <% else %>
+              <%= image_tag "icon_default_avatar.png", class: "product-photo-img" %>
+            <% end %>
+            <p class="product-p myborder">
+              <%= trainer.full_name %><br/>
+            </p>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+
+    <div class="clearfix"></div>
+  </div>
+</section>
+
+

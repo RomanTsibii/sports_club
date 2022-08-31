@@ -16,7 +16,7 @@ gem 'rspec-rails'
 gem 'factory_bot_rails'
 gem 'devise'
 gem 'pundit'
-gem 'omniauth', '= 1.9.0'
+gem 'omniauth', '1.9.2'
 gem 'omniauth-facebook', '= 5.0.0'
 
 gem 'bulma-rails', '~> 0.7.4'
